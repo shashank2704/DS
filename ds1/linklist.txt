@@ -1,0 +1,244 @@
+import java.util.*;
+class Node{
+    int data;
+    Node next;
+    Node(int d)
+    {
+        data=d;
+        next=null;
+    }
+}
+public class linklist
+{       
+   
+   Node head=null;
+   void add_at_end(int d)
+   {
+       Node temp=new Node(d);
+       if(head==null)
+       {
+           head=temp;
+       }
+       else
+       {
+           Node temp1=head;
+           while(temp1.next!=null)
+           {
+               temp1=temp1.next;
+           }
+           temp1.next=temp;
+       }
+   }
+   void add_at_beg(int d)
+   {
+       Node temp=new Node(d);
+       if(head==null)
+       {
+           head=temp;
+           return;
+       }
+     
+       temp.next=head;
+       head=temp;
+       
+   }
+   void display()
+   {
+       if(head==null)
+       {
+           System.out.println("empty list");
+           return;
+       }
+       Node temp=head;
+       while(temp!=null)
+       {
+           System.out.print(temp.data+" ");
+           temp=temp.next;
+       }
+       
+   }
+   int size()
+   {
+       if(head==null)
+       {
+           return 0;
+       }
+       Node temp=head;
+       int count=0;
+       while(temp!=null)
+       {
+           temp=temp.next;
+           count++;
+       }
+       return count;
+   }
+   void add_at_index(int i,int d)
+   {
+       if(head!=null)
+       {
+           
+           if(i==0)
+           {
+               Node temp=new Node(d);
+               temp.next=head;
+               head=temp;
+           }
+           else
+           {
+                       Node temp=head;
+                       int count=0;
+                        while(temp!=null)
+                       {
+                       temp=temp.next;
+                       count++;
+                       }
+                       count=count-1;
+                       if(i<=count)
+                       {
+                           temp=head;
+                           Node temp1=new Node(d);
+                           int n=0;
+                           while(n<(i-1))
+                           {
+                               temp=temp.next;
+                               n++;
+                           }
+                           temp=temp.next;
+                           temp1.next=temp.next;
+                           temp.next=temp1;
+                           
+                       }
+               
+               
+           }
+           
+           
+       }
+       
+   }
+   void middle()
+   {
+       Node slow =head;
+       Node fast=head;
+       while(fast.next!=null && fast.next.next!=null)
+       {
+           slow=slow.next;
+           fast=fast.next.next;
+       }
+       System.out.println(slow.data);
+       
+   }
+   void delete_at_beg()
+   {
+       if(head!=null)
+       {
+          head=head.next;
+           
+       }
+   }
+   void delete_at_end()
+   {
+       Node temp=head;
+       if(head!=null){
+       while(temp.next.next!=null)
+       {
+           temp=temp.next;
+       }
+       temp.next=null;
+       }
+   }
+   void delete_at_index(int i)
+   {
+       int n=0;
+       if(head!=null)
+       {
+             if(i==0)
+             {
+                 head=head.next;
+                 return;
+             }
+             else
+             {
+                 int count=0;
+                 Node temp=head;
+                  while(temp!=null)
+                    {
+                   temp=temp.next;
+                   count++;
+                      }
+                      count=count-1;
+                      if(i==count)
+                      {
+                          temp=head;
+                          while(temp.next.next!=null)
+                          {
+                              temp=temp.next;
+                          }
+                          temp.next=null;
+                          return;
+                          
+                      }
+                      else
+                      if(i<count)
+                      {
+                          
+                          temp=head;
+                          while(n<(i-1))
+                          {
+                              n++;
+                              temp=temp.next;
+                          }
+                          temp.next=temp.next.next;
+                      }
+                 
+             }
+       }
+   }
+   
+   
+   void node_from_end(int n)
+   {
+       int count=0;
+                 Node temp=head;
+                  while(temp!=null)
+                    {
+                   temp=temp.next;
+                   count++;
+                      }
+                      
+                      if(count>=n)
+                      {
+                         int k=count-n;
+                         int i=0;
+                         Node temp1=head;
+                         while(i<k)
+                         {
+                             temp1=temp1.next;
+                             i++;
+                         }
+                         System.out.println();
+                         System.out.println(temp1.data);
+                          
+                      }
+       
+   }
+    public static void main (String[] args) {
+ 
+ linklist l1=new linklist();
+ l1.add_at_end(10);
+l1.add_at_end(20);
+l1.add_at_end(30);
+l1.add_at_end(60);
+l1.add_at_end(70);
+l1.add_at_beg(50);
+l1.add_at_index(5,40);
+l1.display();
+l1.delete_at_index(5);
+System.out.println();
+l1.display();
+l1.node_from_end(1);
+
+
+ 
+    }
+}
