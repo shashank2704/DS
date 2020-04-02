@@ -1,0 +1,11 @@
+
+always open in git folder 
+git init 
+git add .
+git commit -m " version1"
+git commit -m "my commit" 
+git config --global user.email "youremail@gmail.com"
+git config --global user.name "nme"
+git status
+git remote add origin https://github.com/shashank2704/project.git
+git push -u origin master
