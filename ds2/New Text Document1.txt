@@ -1,0 +1,94 @@
+import java.util.*;
+public class card {
+
+
+    class Cards {
+        int value;
+        String suit;
+        boolean color;
+
+        Cards(String suit, int r, boolean color) {
+            this.value = r;
+            this.suit = suit;
+            this.color = color;
+        }
+
+
+        int getSuitPriority(String suitString) {
+            int suit = 0;
+            //Switch statement with int data type
+            switch (suitString) {
+                case "clubs":
+                    suit = 1;
+                    break;
+                case "hearts":
+                    suit = 2;
+                    break;
+                case "diamonds":
+                    suit = 3;
+                    break;
+                case "spades":
+                    suit = 4;
+                    break;
+                default:
+                    break;
+            }
+
+            return suit;
+
+        }
+
+
+    }
+
+    class card{
+        int points1 = 0;
+        int points2 = 0;
+
+        //The composition of the class Cards in the class ClassicGame. In this code, the game() method will take cards c1 and c2 as input.//
+        public void game(Cards c1, Cards c2) {
+            if (c1.value < c2.value) {
+                points2++;
+            } else if (c1.value > c2.value) {
+                points1++;
+            } else {
+
+                if (c1.getSuitPriority(c1.suit) > c2.getSuitPriority(c2.suit)) {
+                    points1++;
+                } else if (c1.getSuitPriority(c1.suit) < c2.getSuitPriority(c2.suit)) {
+                    points2++;
+                } else {
+                    points1++;
+                    points2++;
+                }
+            }
+
+            System.out.println("points of player 1 :" + " " + points1);
+            System.out.println("points of player 2 :" + " " + points2);
+        }
+
+    }
+
+    public class Source {
+
+        public static void main(String[] args) {
+            //Two objects (cards) of class Cards
+            Cards c[]=new Cards[2];
+            Scanner in=new Scanner(System.in);
+            for(int i=0;i<2;i++)
+            {
+                String suit=in.next();
+                in.nextLine();
+                int number=in.nextInt();
+                boolean color=in.nextBoolean();
+
+                c[i]=new Cards(suit,number,color);
+
+            }
+            card cg = new card();
+
+            cg.game(c[0], c[1]);
+
+        }
+    }
+}
