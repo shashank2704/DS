@@ -1,0 +1,43 @@
+class TreeNode{
+    int data,level;
+    TreeNode left;
+    TreeNode right;
+    TreeNode(int d){
+        data=d;
+        left=right=null;
+    }
+}
+
+public class DiagnolPrint {
+    static  TreeNode root=new TreeNode(1);
+    public static void main(String[] args) {
+        root.left=new TreeNode(2);
+        root.right=new TreeNode(3);
+        root.left.left=new TreeNode(4);
+        root.left.right=new TreeNode(5);
+        root.right.left=new TreeNode(6);
+        root.right.right=new TreeNode(7);
+        root.level=1;
+        diagnol(root);
+        printDiagnol(root,1);
+        System.out.println();
+    }
+    static void diagnol(TreeNode root){
+        if(root.left!=null){
+            root.left.level=root.level-1;
+            diagnol(root.left);
+        }
+        if(root.right!=null){
+            root.right.level=root.level;
+            diagnol(root.right);
+        }
+    }
+    static void printDiagnol(TreeNode root,int l){
+        if(root.level==l)
+            System.out.print(root.data+" ");
+        if(root.left!=null)
+            printDiagnol(root.left,l);
+        if(root.right!=null)
+            printDiagnol(root.right,l);
+    }
+}
